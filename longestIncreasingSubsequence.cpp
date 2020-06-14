@@ -22,23 +22,31 @@ int longestCommonSubsequenceRecursiveHelper(vector<int> sequence, int pos, int l
 int longestCommonSubsequenceRecursive(vector<int> sequence)
 {
     int seqSize = sequence.size();
-    int maxLen = 0;
+    if (seqSize < 1) {
+        cout <<"No data!"<< endl;
+        return -1;
+    }
+    int maxLen = 1;
     for (int i = 0; i < seqSize - 1; i++)
     {
-        int len = longestCommonSubsequenceRecursiveHelper(sequence, i + 1, sequence[i]);
+        int len = 1 + longestCommonSubsequenceRecursiveHelper(sequence, i + 1, sequence[i]);
         if (len > maxLen)
         {
             maxLen = len;
         }
     }
-    return maxLen + 1;
+    return maxLen;
 }
 
 int longestCommonSubsequence(vector<int> sequence)
 {
+    int seqSize = sequence.size();
+    if (seqSize < 1) {
+        cout <<"No data!"<< endl;
+        return -1;
+    }
     vector<int> totalSum(sequence.size(), 1);
     vector<int> location(sequence.size(), -1);
-    int seqSize = sequence.size();
     int maxIndex = 0;
 
     for (int i = 1; i < seqSize; i++)
@@ -74,7 +82,7 @@ int longestCommonSubsequence(vector<int> sequence)
 
 int main()
 {
-    vector<int> input = {3, 4, -1, 0, 6, 2, 3, 4};
+    vector<int> input = {3, 4, -1, 0, 6, 2, 3};
     cout << "Maximum subsequence length: " << longestCommonSubsequence(input) << endl;
     cout << "Maximum subsequence length using recursion: " << longestCommonSubsequenceRecursive(input) << endl;
 
