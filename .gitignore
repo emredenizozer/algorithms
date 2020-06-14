@@ -1,0 +1,5 @@
+*.iml
+.idea
+*.xml
+.vscode
+a.out
